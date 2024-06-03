@@ -20,8 +20,8 @@ _This project uses `yarn` as the dependency manager_
 
 ## Screenshots
 
-![](docs/scr1.png)
-![](docs/scr2.png)
+![](images/scr1.png)
+![](images/scr2.png)
 
 ## Author
 
