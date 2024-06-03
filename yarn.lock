@@ -46,6 +46,11 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.57.0.tgz#a5417ae8427873f1dd08b70b3574b453e67b5f7f"
   integrity sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==
 
+"@fseehawer/react-circular-slider@^2.6.4":
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/@fseehawer/react-circular-slider/-/react-circular-slider-2.6.4.tgz#6afcb6c095cd4626b58de59e9439781519be83e6"
+  integrity sha512-G8owD00M6cfPvvBCcKqS/O34qYy5J19Trrz7DK6ypRhhR9MUcGHm6qKMBwr7tFpZskpULCq/guOqWOX2TPzXOw==
+
 "@humanwhocodes/config-array@^0.11.14":
   version "0.11.14"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.14.tgz#d78e481a039f7566ecc9660b4ea7fe6b1fec442b"

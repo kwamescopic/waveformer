@@ -7,6 +7,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import { mergeClasses } from "@/utils";
 import { FaPause, FaPlay } from "react-icons/fa6";
 import { FaUndoAlt } from "react-icons/fa";
+import CircularSlider from "@fseehawer/react-circular-slider";
 
 export default function WaveformPage() {
   const waveformRef = useRef<HTMLDivElement>(null);
@@ -15,12 +16,12 @@ export default function WaveformPage() {
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [surfer, setSurfer] = useState<WaveSurfer | null>(null);
+  const [volume, setVolume] = useState<number>(50);
   const [playTime, setPlayTime] = useState(0);
 
   const handleRestart = () => {
     if (!surfer) return;
     surfer.stop();
-    // surfer.seekTo(0);
     setPlaying(false);
     setPlayTime(0);
   };
@@ -43,6 +44,7 @@ export default function WaveformPage() {
       });
 
       wavesurfer.on("ready", () => setReady(true));
+      wavesurfer.on("finish", () => setPlaying(false));
       wavesurfer.on("timeupdate", (time) => setPlayTime(time));
       setSurfer(wavesurfer);
     } else if (!audioFile) {
@@ -66,6 +68,13 @@ export default function WaveformPage() {
       }
     }
   }, [playing, surfer]);
+
+  useEffect(() => {
+    if (ready && surfer) {
+      const normalizedVolume = Math.max(0, Math.min(1, volume / 100));
+      surfer.setVolume(normalizedVolume);
+    }
+  }, [ready, surfer, volume]);
 
   return (
     <main className="w-full h-screen grid place-items-center p-8 bg-gray-50">
@@ -99,6 +108,22 @@ export default function WaveformPage() {
               <FaUndoAlt size={24} color="#fff" />
             </ControlButton>
           )}
+
+          {ready && (
+            <CircularSlider
+              width={72}
+              min={0}
+              max={100}
+              dataIndex={50}
+              label="Volume"
+              trackSize={2}
+              labelFontSize="10px"
+              valueFontSize="10px"
+              verticalOffset="0rem"
+              onChange={(v: number) => setVolume(v)}
+              useMouseAdditionalToTouch
+            />
+          )}
         </div>
       </main>
     </main>
@@ -114,7 +139,7 @@ function ControlButton({ className, children, hint, ...rest }: ControlButtonProp
     <div className="flex flex-col items-center gap-2">
       <button
         className={mergeClasses(
-          "grid place-items-center w-12 h-12 bg-sky-400 rounded-full shadow-lg disabled:bg-gray-400",
+          "grid place-items-center w-12 h-12 bg-sky-400 rounded-full shadow-lg disabled:bg-gray-200",
           className,
         )}
         {...rest}>

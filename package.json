@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fseehawer/react-circular-slider": "^2.6.4",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
