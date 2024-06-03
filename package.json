@@ -2,6 +2,7 @@
   "name": "waveformer",
   "version": "0.1.0",
   "private": true,
+  "author": "Kwame Opare Asiedu",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

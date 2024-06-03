@@ -16,7 +16,12 @@ _This project uses `yarn` as the dependency manager_
 - Clone this repository
 - Install dependencies using `yarn install`
 - Start the development server `yarn dev`
-- Open app at http://localhost:4090
+- Open app at http://localhost:3000
+
+## Screenshots
+
+![](docs/scr1.png)
+![](docs/scr2.png)
 
 ## Author
 
