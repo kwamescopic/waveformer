@@ -2,8 +2,14 @@ import { APP_AUTHOR, APP_NAME } from "@/config";
 import { Text } from "@/components/text";
 import { useDropzone } from "react-dropzone";
 import { mergeClasses } from "@/utils";
+import { useCacheContext } from "@/contexts/cache-context";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function HomePage() {
+  const router = useRouter();
+  const { audioFile, setAudioFile } = useCacheContext();
+
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject, open } = useDropzone({
     accept: { "audio/mpeg": [".mp3"], "audio/ogg": [".ogg"] },
     onDrop: (accepted) => handleSelectFile(accepted),
@@ -12,8 +18,12 @@ export default function HomePage() {
   });
 
   const handleSelectFile = (acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
+    setAudioFile(acceptedFiles[0]);
   };
+
+  useEffect(() => {
+    if (audioFile) router.push("/waveform");
+  }, [audioFile, router]);
 
   return (
     <main className="w-full h-screen p-8 flex flex-col gap-4 items-center justify-center">
